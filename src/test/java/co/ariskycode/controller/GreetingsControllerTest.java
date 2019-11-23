@@ -5,6 +5,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithAnonymousUser;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -41,6 +42,17 @@ public class GreetingsControllerTest {
 		.accept(MediaType.APPLICATION_JSON)
 		.exchange()		
 		.expectStatus().isUnauthorized();
+		
+	}
+	
+	
+	@Test
+	@WithAnonymousUser
+	public void greetTestWithForbiddenResponse() {
+		webTestClient.get().uri("/greet")
+		.accept(MediaType.APPLICATION_JSON)
+		.exchange()		
+		.expectStatus().isForbidden();
 		
 	}
 }
