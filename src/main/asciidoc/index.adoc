@@ -20,3 +20,10 @@ include::{snippets}/greet/http-request.adoc[]
 
 include::{snippets}/greet/http-response.adoc[]
 
+=== Sample request with input parameters
+
+include::{snippets}/greet-with-params/http-request.adoc[]
+
+=== Sample response for the input parameters
+
+include::{snippets}/greet-with-params/http-response.adoc[]
