@@ -23,6 +23,7 @@ public class ApplicationSecurityConfiguration {
 		http.addFilterBefore(contextPathWebFilter(), SecurityWebFiltersOrder.FIRST)
 		.csrf().disable()
 		.authorizeExchange()
+		.pathMatchers("/docs/**").permitAll()
 		.pathMatchers(contextPath + "/greet").hasRole("USER")
 		.pathMatchers(contextPath + "/admin").hasRole("ADMIN")
 		.anyExchange()
