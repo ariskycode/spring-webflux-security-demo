@@ -1,10 +1,22 @@
 = Greetings REST Docs
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
 
-This is an example output for a service running at http://localhost:8080:
+This is a sample documentation for greetings service running at http://localhost:8080
 
-.request
+== Greet
+
+This request will return a welcome greeting to the user.
+
+=== Sample request
+
 include::{snippets}/greet/http-request.adoc[]
 
-.response
+=== Sample response
+
 include::{snippets}/greet/http-response.adoc[]
 

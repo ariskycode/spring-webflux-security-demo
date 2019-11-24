@@ -18,7 +18,7 @@ import reactor.test.StepVerifier;
 import static org.springframework.restdocs.webtestclient.WebTestClientRestDocumentation.document;
 
 @WebFluxTest
-@AutoConfigureRestDocs(outputDir = "target/snippets")
+@AutoConfigureRestDocs
 public class GreetingsControllerTest {
 
 	@Autowired
@@ -55,7 +55,6 @@ public class GreetingsControllerTest {
 		.expectStatus().isOk()
 		.returnResult(String.class)		
 		.getResponseBody();
-		
 		
 		 StepVerifier.create(result) 
 		 .expectSubscription() 
