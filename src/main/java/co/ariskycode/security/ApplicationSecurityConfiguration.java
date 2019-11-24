@@ -24,6 +24,7 @@ public class ApplicationSecurityConfiguration {
 		.csrf().disable()
 		.authorizeExchange()
 		.pathMatchers("/docs/**").permitAll()
+		.pathMatchers("/actuator/**").permitAll()
 		.pathMatchers(contextPath + "/greet").hasRole("USER")
 		.pathMatchers(contextPath + "/admin").hasRole("ADMIN")
 		.anyExchange()
