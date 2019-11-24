@@ -1,7 +1,10 @@
 package co.ariskycode.controller;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.http.MediaType;
@@ -20,10 +23,13 @@ public class GreetingsControllerTest {
 	@Autowired
 	WebTestClient webTestClient;
 	
-	@Test
+	@DisplayName("Should greet the user")
+	@ParameterizedTest(name = "having name as {0} with Hello, {0}")
+	@ValueSource(strings = {"test", "john", "clint"})
 	@WithMockUser
-	public void greetTestWithValidResponse() {
-		Flux<String> result = webTestClient.get().uri("/greet")
+	public void greetTestWithValidResponse(String name) {
+		Flux<String> result = webTestClient.get()
+		.uri(uriBuilder -> uriBuilder.path("/greet").queryParam("name", name).build())
 		.accept(MediaType.APPLICATION_JSON)
 		.exchange()
 		.expectStatus().isOk()
@@ -32,7 +38,7 @@ public class GreetingsControllerTest {
 		
 		StepVerifier.create(result)
 		.expectSubscription()
-		.expectNext("Hello")
+		.expectNext("Hello, ".concat(name))
 		.verifyComplete();
 	}
 	
