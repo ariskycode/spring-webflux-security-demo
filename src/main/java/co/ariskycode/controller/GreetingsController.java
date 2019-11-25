@@ -18,8 +18,8 @@ public class GreetingsController {
 	}
 
 	@GetMapping("/admin")
-	public Mono<String> greet(Mono<Principal> principal) {
-		return principal.map(Principal::getName).map(name -> String.format("Hello, %s", name));
+	public Mono<Greet> greet(Mono<Principal> principal) {
+		return principal.map(Principal::getName).map(Greet::new);
 	}
 
 }
