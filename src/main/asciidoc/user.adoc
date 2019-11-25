@@ -1,0 +1,11 @@
+== User
+
+This documents operations performed with user.
+
+=== Sample request
+
+include::{snippets}/user/http-request.adoc[]
+
+=== Sample response
+
+include::{snippets}/user/http-response.adoc[]

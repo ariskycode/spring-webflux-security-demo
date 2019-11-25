@@ -27,3 +27,7 @@ include::{snippets}/greet-with-params/http-request.adoc[]
 === Sample response for the input parameters
 
 include::{snippets}/greet-with-params/http-response.adoc[]
+
+
+[[User]]
+include::user.adoc[]
