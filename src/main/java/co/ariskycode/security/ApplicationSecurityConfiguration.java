@@ -20,15 +20,15 @@ public class ApplicationSecurityConfiguration {
 	
 	@Bean
 	public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-		http.addFilterBefore(contextPathWebFilter(), SecurityWebFiltersOrder.FIRST)
+		http
+		.addFilterBefore(contextPathWebFilter(), SecurityWebFiltersOrder.FIRST)
 		.csrf().disable()
 		.authorizeExchange()
 		.pathMatchers("/docs/**").permitAll()
 		.pathMatchers("/actuator/**").permitAll()
 		.pathMatchers(contextPath + "/greet").hasRole("USER")
 		.pathMatchers(contextPath + "/admin").hasRole("ADMIN")
-		.anyExchange()
-        .authenticated()
+		.pathMatchers(contextPath + "/user").hasRole("ADMIN")
 		.and()
 		.httpBasic();
 		return http.build();
